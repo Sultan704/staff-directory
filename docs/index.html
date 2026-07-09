@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff Directory</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">Staff Directory</span>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-6 mb-2">
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Search by job title or research area..."
+          />
+        </div>
+        <div class="col-md-6 mb-2">
+          <select id="areaFilter" class="form-select">
+            <option value="">All research areas</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="statusMessage" class="text-center my-4"></div>
+
+      <div id="staffContainer" class="row g-4"></div>
+    </div>
+
+    <div class="modal fade" id="staffModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalName">Name</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center" id="modalBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

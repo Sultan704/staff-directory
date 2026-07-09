@@ -1,0 +1,225 @@
+:root {
+  --color-bg: #f5f6fa;
+  --color-surface: #ffffff;
+  --color-ink: #16213e;
+  --color-ink-muted: #5b6478;
+  --color-primary: #16213e;
+  --color-accent: #b8863c;
+  --color-accent-soft: #f3e7d3;
+  --color-border: #e2e5ec;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+}
+
+.site-header {
+  background-color: var(--color-primary);
+  padding: 2.5rem 0 2.75rem;
+  margin-bottom: 3rem;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.controls-panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.control-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.4rem;
+}
+
+.control-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 0.6rem 0.85rem;
+}
+
+.control-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.staff-card {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-surface);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease;
+  height: 100%;
+}
+
+.staff-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(22, 33, 62, 0.1);
+  border-color: var(--color-accent);
+}
+
+.staff-card .photo-wrap {
+  position: relative;
+}
+
+.staff-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.index-tag {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  background-color: rgba(22, 33, 62, 0.85);
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+}
+
+.staff-card .card-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.staff-card .card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-ink);
+  margin-bottom: 0.15rem;
+}
+
+.staff-card .job-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.6rem;
+}
+
+.area-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 2px;
+  padding: 0.2rem 0.5rem;
+}
+
+#statusMessage .alert {
+  font-family: var(--font-body);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.modal-content {
+  border-radius: 4px;
+  border: none;
+}
+
+.modal-header {
+  background-color: var(--color-primary);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
+#modalBody {
+  padding: 1.5rem;
+}
+
+#modalBody img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 1.25rem;
+  border: 3px solid var(--color-accent-soft);
+}
+
+.modal-field {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.55rem 0;
+}
+
+.modal-field:last-child {
+  border-bottom: none;
+}
+
+.modal-field-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  width: 110px;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.modal-field-value {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-ink);
+}
