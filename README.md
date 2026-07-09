@@ -4,6 +4,18 @@ This is my coursework project for CS22002 (Modern Web Stack Development). It's a
 web page that pulls random people from an external API (randomuser.me) and combines them with
 made-up staff info (job title, research area, email) from my own Flask API.
 
+## Live demo
+
+The site is hosted on GitHub Pages here:
+`https://sultan704.github.io/staff-directory/`
+
+The backend API is also deployed (on Render), so the live site above works straight away without
+needing to run anything locally:
+`https://staff-directory.onrender.com`
+
+Note: the free Render plan spins down when it's not been used for a while, so the very first
+request after some idle time can take 20-30 seconds to wake back up. After that it's fast.
+
 ## What's in this repo
 
 ```
@@ -11,7 +23,8 @@ staff-directory/
 ├── backend/
 │   ├── app.py              -> the Flask API
 │   ├── test_app.py         -> tests for the API
-│   └── requirements.txt    -> python packages needed
+│   ├── requirements.txt    -> python packages needed
+│   └── Procfile             -> tells Render how to start the app
 └── frontend/
     ├── index.html
     ├── style.css
@@ -29,13 +42,12 @@ staff-directory/
 - If something fails to load, it shows a message instead of just breaking
 - Layout is responsive (works on phone/tablet/desktop) using Bootstrap
 
-## How to run it
+## Running it locally
 
-You need two things running at the same time: the backend (the API) and the frontend (the web page).
+You don't have to run the backend yourself to use the site, since it's already live on Render
+(see above). But if you want to run everything locally instead (e.g. to make changes):
 
-### 1. Start the backend first
-
-Open a terminal and go into the backend folder:
+### 1. Start the backend
 
 ```bash
 cd backend
@@ -43,72 +55,65 @@ pip3 install -r requirements.txt
 python3 app.py
 ```
 
-Leave this terminal open. It should say it's running on `http://127.0.0.1:5000`.
+This runs at `http://127.0.0.1:5000`.
+
+If you're running it locally, you'll also need to change the `API_BASE_URL` value near the top
+of `frontend/script.js` back to `http://127.0.0.1:5000` instead of the live Render URL.
 
 ### 2. Start the frontend
 
-Open a **second** terminal (keep the first one running) and go into the frontend folder:
+In a separate terminal:
 
 ```bash
 cd frontend
 python3 -m http.server 5500
 ```
 
-Then open your browser and go to `http://127.0.0.1:5500`.
+Then open `http://127.0.0.1:5500` in your browser.
 
-Note: don't just double click index.html to open it, it might not work properly because of how
-browsers handle fetch requests from local files. Running it through the command above fixes that.
+Don't just double click index.html to open it directly, some browsers block fetch requests from
+local files. Running it through the command above avoids that.
 
-### 3. (Optional) Run the tests
-
-If you want to check the API is working correctly:
+### 3. Run the tests (optional)
 
 ```bash
 cd backend
 pytest test_app.py -v
 ```
 
-This runs through 14 checks on the API and they should all pass.
+14 tests, checking all endpoints and error cases.
 
 ## My API
 
-While the backend is running, you can see the full interactive docs at:
-
-```
-http://127.0.0.1:5000/apidocs
-```
-
-Here's a quick summary of what it does:
+Interactive docs (Swagger UI):
+`https://staff-directory.onrender.com/apidocs`
 
 **GET /staff**
-Gives back the whole list of staff as JSON.
+Returns the whole list of staff as JSON.
 
-You can also filter it like this: `/staff?area=AI` — this will only return staff in that
-research area. It works with either the short code (like "AI") or part of the full name (like
-"cyber" for Cyber Security). It's not case sensitive.
-
-If you leave the area blank or make it too long it'll send back an error instead.
+Optional filter: `/staff?area=AI` — matches either the short code (like "AI") or part of the full
+name (like "cyber" for Cyber Security). Not case sensitive. Sending an empty or very long value
+returns an error instead.
 
 **GET /staff/<id>**
-Gives back one staff member by their ID number, e.g. `/staff/1`.
-If the ID doesn't exist you'll get a 404 error with a message explaining that.
+Returns one staff member by ID, e.g. `/staff/1`. Returns a 404 with a message if that ID doesn't
+exist.
 
 **GET /**
-Just shows that the API is up and lists the routes available.
+Shows the API is running and lists the available routes.
 
 ## Tools used
 
-- HTML, CSS, JavaScript for the frontend, plus Bootstrap for the layout
-- Python + Flask for the backend, with Flask-CORS so the frontend can actually talk to it
+- HTML, CSS, JavaScript, Bootstrap for the frontend
+- Python, Flask, Flask-CORS for the backend
 - Flasgger for the auto-generated API docs
 - pytest for testing
+- Hosted on GitHub Pages (frontend) and Render (backend)
 
 ## A few notes
 
-- The staff data is just hardcoded in a list in app.py, not a real database, since that's all
+- The staff data is hardcoded in a list in app.py rather than a real database, since that's all
   this assignment needed.
-- If the staff cards don't load and you see a CORS error in the browser console, it might be a
-  browser extension (like an ad blocker) blocking local requests, not an actual bug. Try it in
-  Incognito mode to check.
-- Make sure the backend terminal is still running whenever you're using the site, otherwise the
-  staff data won't load (only the photos from randomuser.me would, or nothing at all).
+- If staff cards ever don't load and there's a CORS error in the browser console, it's sometimes
+  a browser extension (like an ad blocker) blocking the request rather than an actual bug. Worth
+  checking in Incognito mode if that happens.
