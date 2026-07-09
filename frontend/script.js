@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:5000";
+const API_BASE_URL = "https://staff-directory.onrender.com";
 const RANDOM_USER_URL = "https://randomuser.me/api/?results=10";
 
 let allStaff = [];
